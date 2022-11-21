@@ -162,4 +162,9 @@ include in this repository due to file size).
 ### Dependencies
 
 We provide [`renv`](https://rstudio.github.io/renv/articles/renv.html)
-files to facilitate dependency management.
+files to facilitate dependency management. We include the `.Rprofile`
+file so when cloning the repository and opening the project, `renv`
+should be automatically downloaded and installed and project
+dependencies can be restore with `renv::restore()`. See [this
+resource](https://rstudio.github.io/renv/articles/collaborating.html)
+for futher details.
