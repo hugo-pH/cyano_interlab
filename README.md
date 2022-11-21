@@ -128,6 +128,7 @@ Processed datasets can be accessed with:
 
 ``` r
 targets::tar_load(data.experiments.processed)
+# example to extract spectrophotometer OD
 data.experiments.processed |> 
       dplyr::filter(data_id == "sp.od") |> 
       tidyr::unnest(data) |> 
@@ -149,3 +150,16 @@ data.experiments.processed |>
     ## 10 Amsterdam EVC    +                     1 20211118       202111…  0.542      4
     ## # … with 1,894 more rows, and abbreviated variable names ¹​experiment_date,
     ## #   ²​experiment_id
+
+### Figures
+
+The code to produce each figure in the manuscript can be found in the
+`R/` directory. Each figure is created with a custom function stored in
+a separate file. The `targets` pipeline includes these functions and the
+output is stored in the `figures/` directory (.tiff files are not
+include in this repository due to file size).
+
+### Dependencies
+
+We provide [`renv`](https://rstudio.github.io/renv/articles/renv.html)
+files to facilitate dependency management.
