@@ -106,7 +106,7 @@ plot_figure_2 <-
         expand = expansion(mult = c(0, 0.01)),
         limits = c(0, 0.075)
       ) +
-      theme_light(font.size, base_family = figure.font.family) +
+      theme_bw(font.size, base_family = figure.font.family) +
       theme(
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank(),

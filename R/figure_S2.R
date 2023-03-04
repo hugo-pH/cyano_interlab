@@ -131,7 +131,7 @@ plot_figure_S2 <-
         y = "CV (%)",
         colour = "Variation source"
       ) +
-      theme_light(font.size, base_family = figure.font.family) +
+      theme_bw(font.size, base_family = figure.font.family) +
       theme(
         legend.position = "bottom"
       )

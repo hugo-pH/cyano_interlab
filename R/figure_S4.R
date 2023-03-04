@@ -15,7 +15,7 @@
 plot_figure_S4 <-
   function(all.datasets,
            figures.dir,
-           figure.file.name = "figure_3",
+           figure.file.name = "figure_S4",
            height = 10,
            width = 18.5,
            dpi,
@@ -68,7 +68,8 @@ plot_figure_S4 <-
         y = "CV (%)",
         colour = "Strain"
       ) +
-      theme_light(font.size, base_family = figure.font.family)  +
+      theme_bw(font.size, 
+               base_family = figure.font.family)  +
       theme(
         legend.position = "bottom"
       )

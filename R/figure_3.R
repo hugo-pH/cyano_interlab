@@ -77,7 +77,7 @@ plot_figure_3 <-
         y = "nRFU",
         colour = "Induction regime"
       ) +
-      theme_light(font.size, base_family = figure.font.family) +
+      theme_bw(font.size, base_family = figure.font.family) +
       theme(legend.position = "bottom")
     
     save_figures_manuscript(

@@ -121,7 +121,7 @@ plot_figure_4 <-
         y = "CV (%)",
         fill = ""
       ) +
-      theme_light(font.size, base_family = figure.font.family) +
+      theme_bw(font.size, base_family = figure.font.family) +
       theme(
         legend.position = "none",
         panel.grid.major.x = element_blank(),

@@ -119,7 +119,7 @@ plot_figure_1 <-
       labs(x = "Variation source",
            y = "CV (%)",
            fill = "") +
-      theme_light(font.size, base_family = figure.font.family) +
+      theme_bw(font.size, base_family = figure.font.family) +
       theme(
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),

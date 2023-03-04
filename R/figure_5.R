@@ -14,6 +14,7 @@
 #' @return Plot object and files (png, tiff and pdf) in the output directory
 plot_figure_5 <-
   function(all.datasets,
+           df.location.labels,
            figures.dir,
            figure.file.name = "figure_5",
            height = 19,
@@ -98,14 +99,14 @@ plot_figure_5 <-
         labs(
           x = "Strain",
           y = "Ratio",
-          title = "nRFU 7h / nRFU 0h",
+          title = "nRFU 7 h / nRFU 0 h",
           colour = "Induction regime",
           tag = "A"
         ) +
         scale_y_continuous(
           expand = expansion(mult = c(0, 0.05))
         ) +
-        theme_light(font.size, base_family = figure.font.family) +
+        theme_bw(font.size, base_family = figure.font.family) +
         theme(
           panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
@@ -138,13 +139,13 @@ plot_figure_5 <-
         labs(
           x = "Strain",
           y = "nRFU",
-          title = "nRFU 7h",
+          title = "nRFU 7 h",
           tag = "B"
         ) +
         scale_y_continuous(
           expand = expansion(mult = c(0, 0.05))
         ) +
-        theme_light(font.size, base_family = figure.font.family) +
+        theme_bw(font.size, base_family = figure.font.family) +
         theme(legend.position = "bottom") +
         theme(
           panel.grid.major.x = element_blank(),
@@ -176,7 +177,7 @@ plot_figure_5 <-
           tag = "C"
         ) +
         geom_hline(yintercept = 1, alpha = 0.5) +
-        theme_light(font.size, base_family = figure.font.family) +
+        theme_bw(font.size, base_family = figure.font.family) +
         theme(
           panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank()
@@ -196,6 +197,9 @@ plot_figure_5 <-
           values_to = "leakiness",
           names_prefix = "leakiness_"
         ) |> 
+        rename(location_experiment = location) |> 
+        left_join(df.location.labels, by = "location_experiment")  |> 
+        select(-location_experiment) |> 
         ggplot(aes(x = leakiness, y = location)) +
         stat_summary(fun = "mean", geom = "col", 
                      position = position_dodge2(width = 0.8),
@@ -206,7 +210,7 @@ plot_figure_5 <-
         scale_x_continuous(
           expand = expansion(mult = c(0, 0.05))
         ) +
-        theme_light(font.size, base_family = figure.font.family) +
+        theme_bw(font.size, base_family = figure.font.family) +
         theme(
           panel.grid.major.y = element_blank(),
           panel.grid.minor.y = element_blank()

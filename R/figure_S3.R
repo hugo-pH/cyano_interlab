@@ -126,7 +126,7 @@ plot_figure_S3 <-
         scale_x_continuous(
           expand = expansion(mult = c(0, 0.01))
         ) +
-        theme_light(font.size, base_family = figure.font.family) +
+        theme_bw(font.size, base_family = figure.font.family) +
         theme(
           panel.grid.major.y = element_blank(),
           panel.grid.minor.y = element_blank(),
@@ -138,7 +138,6 @@ plot_figure_S3 <-
       p.norm.initial.od <- df.norm.intial.od |> 
         filter(!is.na(norm_initial_OD_730)) |> 
         ggplot(aes(x = norm_initial_OD_730, y = location, fill = location)) +
-        # theme_light(8) +
         geom_col(alpha = 0.6) +
         geom_errorbarh(aes(xmin =  norm_initial_OD_730 - CI, xmax = norm_initial_OD_730 + CI), height = 0.1) +
         scale_fill_manual(values = color.scheme) +
@@ -150,7 +149,7 @@ plot_figure_S3 <-
         scale_x_continuous(
           expand = expansion(mult = c(0, 0.01)),
         ) +
-        theme_light(font.size, base_family = figure.font.family) +
+        theme_bw(font.size, base_family = figure.font.family) +
         theme(
           panel.grid.major.y = element_blank(),
           panel.grid.minor.y = element_blank(),
@@ -167,7 +166,7 @@ plot_figure_S3 <-
           y = bquote(mu~~("h"^"-1")),
           x = bquote("Relative OD"[730])
         ) +
-        theme_light(font.size, base_family = figure.font.family) 
+        theme_bw(font.size, base_family = figure.font.family) 
       
       p.norm.od <- {p.od.ref | p.norm.initial.od | p.cor.od.mu} + plot_annotation(tag_levels = "A")
       

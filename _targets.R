@@ -92,6 +92,7 @@ list(
                                      figure.font.family = figure.font.family)),
   # create figure 5
   tar_target(figure.5, plot_figure_5(data.experiments.processed,
+                                     data.location.labels,
                                      figures.dir = figures.dir,
                                      dpi = figures.dpi,
                                      font.size = figures.font.size, 

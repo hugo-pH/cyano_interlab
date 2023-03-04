@@ -66,7 +66,7 @@ plot_figure_S5 <-
         y = "nRFU",
         colour = "Lab"
       ) +
-      theme_light(font.size, base_family = figure.font.family) +
+      theme_bw(font.size, base_family = figure.font.family) +
       theme(legend.position = "bottom")
     
     save_figures_manuscript(
