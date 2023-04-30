@@ -34,7 +34,7 @@ plot_figure_S4 <-
       group_by(location, strain, induction, time_h) |> 
       summarise(
         mean_RFU = mean(fl_od),
-        mean_nRFU = mean(fl_od_norm),
+        mean_nRFU = mean(norm_value),
         sd = sd(fl_od),
         CV = sd / mean_RFU
       ) |> 

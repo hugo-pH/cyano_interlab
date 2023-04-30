@@ -44,15 +44,15 @@ plot_figure_5 <-
     df.pr.norm.sum <- df.pr.norm |> 
       group_by(location, strain, induction, time_h) |>
       summarise(
-        fl_od_norm_ci = se(fl_od_norm, mult = 1.96),
-        fl_od_norm = mean(fl_od_norm, na.rm = T)
+        norm_value_ci = se(norm_value, mult = 1.96),
+        norm_value = mean(norm_value, na.rm = T)
       ) 
 
     df.fold.changes <- df.pr.norm.sum |> 
       filter(time_h %in% c(0, 7)) |> 
-      select(-fl_od_norm_ci) |> 
+      select(-norm_value_ci) |> 
       pivot_wider(names_from = time_h, 
-                  values_from = fl_od_norm, 
+                  values_from = norm_value, 
                   names_prefix = "time_h_") |> 
       mutate(
         fold_change = time_h_7 / time_h_0
@@ -60,8 +60,8 @@ plot_figure_5 <-
     
     df.leakniness <- df.pr.norm.sum |> 
       filter(time_h  == 7, induction == "-", strain %in% c("EVC", "petE", "prha")) |> 
-      select(-fl_od_norm_ci) |> 
-      pivot_wider(names_from = strain, values_from = fl_od_norm) |> 
+      select(-norm_value_ci) |> 
+      pivot_wider(names_from = strain, values_from = norm_value) |> 
       mutate(
         leakiness_prha = prha / EVC,
         leakiness_petE = petE / EVC
@@ -118,7 +118,7 @@ plot_figure_5 <-
       
       p2 <- df.pr.norm.sum |> 
         filter(time_h  == 7, induction == "+") |> 
-        ggplot(aes(x = strain, y = fl_od_norm)) +
+        ggplot(aes(x = strain, y = norm_value)) +
         stat_summary(
           fun = "mean", geom = "col", 
           position = position_dodge(width = .9),
@@ -184,9 +184,9 @@ plot_figure_5 <-
         )
       
       p4 <- df.pr.norm |> 
-        select(time_h, location, experiment_id, strain, induction, fl_od_norm) |> 
+        select(time_h, location, experiment_id, strain, induction, norm_value) |> 
         filter(time_h  == 7, induction == "-", strain %in% c("EVC", "petE")) |> 
-        pivot_wider(names_from = strain, values_from = fl_od_norm) |> 
+        pivot_wider(names_from = strain, values_from = norm_value) |> 
         mutate(
           leakiness_petE = petE / EVC
         ) |> 

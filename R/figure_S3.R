@@ -27,7 +27,7 @@ plot_figure_S3 <-
            scaling = 2,
            font.size, 
            figure.font.family) {
-
+    # browser()
     df.spectrophotometer <- experiments.data |> 
       filter(data_id == "sp.od") |> 
       unnest(data) |> 
@@ -72,7 +72,7 @@ plot_figure_S3 <-
     # normalize the assay time 0 measurements by the reference measurements
     df.norm.intial.od <- df.spectrophotometer |> 
       filter(time_h == 0) |> 
-      left_join(df.sp.ref.st |> rename(ref_OD_730 = OD_730), by = "location") |> 
+      inner_join(df.sp.ref.st |> rename(ref_OD_730 = OD_730), by = "location") |> 
       mutate(
         norm_initial_OD_730 = OD_730 / ref_OD_730
       ) |> 
@@ -168,7 +168,8 @@ plot_figure_S3 <-
         ) +
         theme_bw(font.size, base_family = figure.font.family) 
       
-      p.norm.od <- {p.od.ref | p.norm.initial.od | p.cor.od.mu} + plot_annotation(tag_levels = "A")
+      p.norm.od <- {p.od.ref | p.norm.initial.od | p.cor.od.mu} + 
+        plot_annotation(tag_levels = "A")
       
     save_figures_manuscript(
       p.norm.od,

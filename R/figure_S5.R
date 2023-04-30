@@ -53,7 +53,7 @@ plot_figure_S5 <-
     
     p.time.course <- df.pr.norm |> 
       left_join(df.strain.labels, by = "strain") |>
-      ggplot(aes(x = time_h, y = fl_od_norm, colour = location)) +
+      ggplot(aes(x = time_h, y = norm_value, colour = location)) +
       geom_point(position = position_jitter(seed = 1989,  width = 0.05),
                  alpha = 0.3, size = 2) +
       facet_grid(induction~strain) +

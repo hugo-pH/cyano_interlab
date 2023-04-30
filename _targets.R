@@ -52,7 +52,9 @@ list(
   ########################
   # process experiment data; combine all datasets and normalize plate-reader data
   tar_target(data.experiments.processed, 
-             process_experiments_data(data.experiments.raw, data.experiments.dilutions)),
+             process_experiments_data(data.experiments.raw, data.experiments.dilutions, norm_var = fl_od)),
+  tar_target(data.experiments.processed.nFU, 
+             process_experiments_data(data.experiments.raw, data.experiments.dilutions, norm_var = fl_bc)),
   # process reference data; combine all datasets and normalize plate-reader data
   tar_target(data.reference.processed, 
              process_reference_data(data.reference.raw, data.reference.dilutions)),
@@ -120,6 +122,14 @@ list(
                                        figure.font.family = figure.font.family)),
   # create figure S5
   tar_target(figure.S5, plot_figure_S5(data.experiments.processed,
+                                       data.location.labels,
+                                       figures.dir = figures.dir,
+                                       dpi = figures.dpi,
+                                       font.size = figures.font.size, 
+                                       figure.font.family = figure.font.family)),
+  # create figure S6
+  tar_target(figure.S6, plot_figure_S6(data.experiments.processed,
+                                       data.experiments.processed.nFU,
                                        data.location.labels,
                                        figures.dir = figures.dir,
                                        dpi = figures.dpi,

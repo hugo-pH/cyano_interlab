@@ -48,17 +48,17 @@ plot_figure_3 <-
     df.pr.norm.sum <- df.pr.norm |> 
       group_by(location, strain, induction, time_h) |>
       summarise(
-        fl_od_norm_ci = se(fl_od_norm, mult = 1.96),
-        fl_od_norm = mean(fl_od_norm, na.rm = T)
+        norm_value_ci = se(norm_value, mult = 1.96),
+        norm_value = mean(norm_value, na.rm = T)
       ) 
     
     p.time.course <- df.pr.norm |> 
       group_by(location, strain, induction, time_h) |>
       summarise(
-        fl_od_norm = mean(fl_od_norm, na.rm = T)
+        norm_value = mean(norm_value, na.rm = T)
       ) |> 
       left_join(df.strain.labels, by = "strain") |>
-      ggplot(aes(x = time_h, y = fl_od_norm, colour = induction)) +
+      ggplot(aes(x = time_h, y = norm_value, colour = induction)) +
       geom_point(position = position_jitter(seed = 1989, width = 0.1),
                  alpha = 0.2) +
       stat_summary(fun = "mean", geom = "line",

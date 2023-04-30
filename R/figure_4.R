@@ -43,8 +43,8 @@ plot_figure_4 <-
       filter(strain != "J23100") |> 
       group_by(location, strain, induction, time_h) |> 
       summarise(
-        mean = mean(fl_od_norm),
-        sd = sd(fl_od_norm),
+        mean = mean(norm_value),
+        sd = sd(norm_value),
         CV = sd / mean
       ) |> 
       ungroup() |> 
@@ -58,12 +58,12 @@ plot_figure_4 <-
       filter(strain != "J23100") |> 
       group_by(location, strain, induction, time_h) |> 
       summarise(
-        fl_od_norm = mean(fl_od_norm)
+        norm_value = mean(norm_value)
       ) |> 
       group_by(strain, induction, time_h) |> 
       summarise(
-        mean = mean(fl_od_norm),
-        sd = sd(fl_od_norm),
+        mean = mean(norm_value),
+        sd = sd(norm_value),
         CV = sd / mean
       ) |> 
       ungroup() |> 
