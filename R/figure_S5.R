@@ -1,4 +1,4 @@
-#' Create figure S4 of interlab manuscript 
+#' Create figure S5 of interlab manuscript 
 #' 
 #' Calculate interlab CV of rfu (not normalized) for induced and uninduced cultures
 #'
@@ -12,7 +12,7 @@
 #' @param figure.font.family The font family for text elements in the figure
 #'
 #' @return Plot object and files (png, tiff and pdf) in the output directory
-plot_figure_S4 <-
+plot_figure_S5 <-
   function(all.datasets,
            figures.dir,
            figure.file.name = "figure_S4",

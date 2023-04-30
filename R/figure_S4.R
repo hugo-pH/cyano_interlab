@@ -1,4 +1,4 @@
-#' Create figure S3 of interlab manuscript 
+#' Create figure S4 of interlab manuscript 
 #' 
 #' Calculate relative OD if time 0 measurement based on reference measurement dataset,
 #' estimate growth rates and compare to relative OD 
@@ -15,7 +15,7 @@
 #' @param figure.font.family The font family for text elements in the figure
 #'
 #' @return Plot object and files (png, tiff and pdf) in the output directory
-plot_figure_S3 <-
+plot_figure_S4 <-
   function(experiments.data,
            reference.data,
            df.location.labels,

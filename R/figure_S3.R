@@ -1,4 +1,4 @@
-#' Create figure S6 of interlab manuscript 
+#' Create figure S3 of interlab manuscript 
 #' 
 #'
 #' @param all.datasets A list-column tibble with all datasets from experimental runs
@@ -12,7 +12,7 @@
 #' @param figure.font.family The font family for text elements in the figure
 #'
 #' @return Plot object and files (png, tiff and pdf) in the output directory
-plot_figure_S6 <-
+plot_figure_S3 <-
   function(all.datasets.norm.nRFU,
            all.datasets.norm.nFU,
            figures.dir,
