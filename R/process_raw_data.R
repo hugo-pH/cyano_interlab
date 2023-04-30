@@ -14,7 +14,8 @@
 #' @return A list-column tibble with a row per dataset
 process_experiments_data <- function(df.experiments.raw, df.pr.dilutions,
                                      correct_negative = T, ref_strain = "J23100",
-                                     ref_induction = "-"){
+                                     ref_induction = "-", norm_var){
+  # browser()
   # load pr OD
   df.pr.od.raw <- load_plate_reader_od(df.experiments.raw)
   # load pr fluorescence
@@ -26,17 +27,21 @@ process_experiments_data <- function(df.experiments.raw, df.pr.dilutions,
   # load chlorophyll
   df.chl.raw <- load_chl(df.experiments.raw)  
   
+  by.exp.dils <- join_by(location == location_experiment,
+                         experiment_date)
+  
   # correct dilution factors
   df.pr.od <- df.pr.od.raw |> 
-    left_join(df.pr.dilutions) |> 
+    left_join(df.pr.dilutions, by = by.exp.dils) |> 
     mutate(
       OD_730 = ifelse(dilution_corrected == F & time_h == 24 & sample_type == "sample", 
                       OD_730 * dilution_factor, 
                       OD_730)
     ) |> 
     select(-c(dilution_factor, dilution_corrected)) 
+  
   df.pr.fl <- df.pr.fl.raw |> 
-    left_join(df.pr.dilutions) |> 
+    left_join(df.pr.dilutions, by = by.exp.dils) |> 
     mutate(
       fl = ifelse(dilution_corrected == F & time_h == 24  & sample_type == "sample", 
                   fl * dilution_factor, 
@@ -54,10 +59,10 @@ process_experiments_data <- function(df.experiments.raw, df.pr.dilutions,
     filter(!is.infinite(fl_od)) |> 
     group_by(location, experiment_date, experiment_id, bio_replicate, 
              strain, induction, time_h, sample_type) |> 
-    summarise(across(where(is.numeric), mean, na.rm = T)) |> 
+    summarise(across(where(is.numeric), \(x) mean(x, na.rm = T))) |> 
     ungroup() 
   
-  df.pr.norm <- strain_normalization(df.pr.bc, .var = fl_od, 
+  df.pr.norm <- strain_normalization(df.pr.bc, .var = {{norm_var}}, 
                                      ref_strain = ref_strain, ref_induction = ref_induction) 
   
   tribble(

@@ -27,7 +27,8 @@ background_correction <- function(df, .var, column_suffix, dilutions, correct_ne
     ungroup()
   # join the summarized background values to the measurements and subtract it from them
   df.measurements <- df |>
-    left_join(dilutions) |> 
+    left_join(dilutions, by = join_by(location == location_experiment,
+                                      experiment_date)) |> 
     filter(!is.na({{.var}}), sample_type == "sample") |>
     left_join(df.blank, by = c("location", "experiment_id", "time_h")) |>
     mutate(
@@ -108,6 +109,7 @@ calculate_rfu <- function(df.od, df.fl, od_col = OD_730, fl_col = fl,
 #' containing the normalized by reference data
 strain_normalization <- function(df, .var, ref_strain, 
                                  ref_induction, column_suffix = "norm"){
+  # browser()
   var <- enquo(.var)
   strain_var_nm <- paste(ref_strain, as_label(var), sep = "_")
   var_corrected_nm <- paste(as_label(var), column_suffix, sep = "_")
@@ -128,7 +130,7 @@ strain_normalization <- function(df, .var, ref_strain,
                                     "experiment_id", "time_h")) |>
     mutate(
       # normalize by reference strain
-      !!var_corrected_nm := {{.var}} / .data[[strain_var_nm]]
+      norm_value := {{.var}} / .data[[strain_var_nm]]
     ) |>
     ungroup() |> 
     select(-!!strain_var_nm )
