@@ -20,7 +20,7 @@ plot_figure_S4 <-
            reference.data,
            df.location.labels,
            figures.dir,
-           figure.file.name = "figure_S3",
+           figure.file.name = "figure_S4",
            height = 5,
            width = 18.5,
            dpi,

@@ -15,7 +15,7 @@
 plot_figure_S5 <-
   function(all.datasets,
            figures.dir,
-           figure.file.name = "figure_S4",
+           figure.file.name = "figure_S5",
            height = 10,
            width = 18.5,
            dpi,

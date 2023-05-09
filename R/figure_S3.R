@@ -16,7 +16,7 @@ plot_figure_S3 <-
   function(all.datasets.norm.nRFU,
            all.datasets.norm.nFU,
            figures.dir,
-           figure.file.name = "figure_S6",
+           figure.file.name = "figure_S3",
            height = 7.2,
            width = 18.5,
            dpi,
