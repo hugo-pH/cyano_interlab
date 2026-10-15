@@ -1,7 +1,8 @@
 Cyano Interlab study
 ================
 
-This a repository to analyze the data from the Cyano Interlab study.
+This a repository to analyze the data from the Cyano Interlab study. 
+The results of this project were published [here](https://pubs.acs.org/asbcd6/article/12/6/1823/333256/Interlaboratory-Reproducibility-in-Growth-and#176526040).
 
 ## Contents
 
